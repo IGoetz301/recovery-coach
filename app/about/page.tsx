@@ -27,30 +27,12 @@ const values = [
   },
 ]
 
-const team = [
-  {
-    name: 'Jordan Rivera',
-    role: 'Co-founder & CEO',
-    bio: 'Former D1 athlete turned software engineer. Built RECOVR after burning out chasing PRs while managing a demanding tech career.',
-    initials: 'JR',
-    gradient: 'from-cyan-500 to-blue-600',
-    photo: '/photo3.jpg',
-  },
-  {
-    name: 'Maya Chen',
-    role: 'Co-founder & CTO',
-    bio: 'PhD in exercise physiology, 8 years in sports science research. Passionate about translating lab-grade metrics into everyday coaching.',
-    initials: 'MC',
-    gradient: 'from-violet-500 to-purple-600',
-  },
-  {
-    name: 'Sam Torres',
-    role: 'Head of Design',
-    bio: 'Product designer from the health tech world. Believes the best tools disappear — you just feel the results.',
-    initials: 'ST',
-    gradient: 'from-emerald-500 to-teal-600',
-  },
-]
+const founder = {
+  name: 'Ian Goetz',
+  role: 'Founder & CEO',
+  bio: 'Fitness enthusiast and entrepreneur who built RECOVR after experiencing the frustration of overtraining while balancing a demanding schedule. Passionate about using AI to help athletes train smarter and recover better.',
+  photo: '/photo3.jpg',
+}
 
 export default function AboutPage() {
   return (
@@ -158,23 +140,22 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {team.map(({ name, role, bio, initials, gradient, photo }) => (
-              <div key={name} className="bg-slate-900 border border-slate-800 rounded-2xl p-7 text-center">
-                {photo ? (
-                  <div className="relative w-full h-56 rounded-xl overflow-hidden mb-5 border border-slate-700">
-                    <Image src={photo} alt={name} fill className="object-cover" style={{ objectPosition: 'center top' }} />
-                  </div>
-                ) : (
-                  <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-5`}>
-                    <span className="text-white font-bold text-xl">{initials}</span>
-                  </div>
-                )}
-                <h3 className="text-white font-bold text-lg mb-1">{name}</h3>
-                <p className="text-cyan-400 text-sm font-medium mb-4">{role}</p>
-                <p className="text-slate-400 text-sm leading-relaxed">{bio}</p>
+          <div className="max-w-sm mx-auto">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden text-center">
+              <div className="relative w-full h-96 bg-slate-800">
+                <Image
+                  src={founder.photo}
+                  alt={founder.name}
+                  fill
+                  className="object-contain"
+                />
               </div>
-            ))}
+              <div className="p-7">
+                <h3 className="text-white font-bold text-xl mb-1">{founder.name}</h3>
+                <p className="text-cyan-400 text-sm font-semibold mb-4">{founder.role}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{founder.bio}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
