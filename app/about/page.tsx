@@ -31,7 +31,7 @@ const founder = {
   name: 'Ian Goetz',
   role: 'Founder & CEO',
   bio: 'Fitness enthusiast and entrepreneur who built RECOVR after experiencing the frustration of overtraining while balancing a demanding schedule. Passionate about using AI to help athletes train smarter and recover better.',
-  photo: '/photo3.jpg',
+  photo: '/photo1.jpg',
 }
 
 export default function AboutPage() {
