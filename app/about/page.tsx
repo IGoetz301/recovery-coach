@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ const team = [
     bio: 'Former D1 athlete turned software engineer. Built RECOVR after burning out chasing PRs while managing a demanding tech career.',
     initials: 'JR',
     gradient: 'from-cyan-500 to-blue-600',
+    photo: '/photo2.jpg',
   },
   {
     name: 'Maya Chen',
@@ -133,25 +135,15 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">Watch our story</p>
           <h2 className="text-3xl font-bold text-white mb-8">See why we built RECOVR</h2>
-          {/* YouTube embed placeholder */}
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-700 bg-slate-900 flex items-center justify-center group cursor-pointer">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-950"/>
-            {/* Thumbnail overlay text */}
-            <div className="relative z-10 flex flex-col items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/15 transition-colors">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-              <span className="text-white/60 text-sm">Founder story — 4 min</span>
-            </div>
-            {/* Decorative grid */}
-            <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
-            }}/>
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-700 shadow-xl shadow-black/40">
+            <iframe
+              src="https://www.youtube.com/embed/ybx8nM8qeRE"
+              title="RECOVR founder story"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
           </div>
-          <p className="text-slate-500 text-sm mt-4">Video coming soon — sign up to be notified</p>
         </div>
       </section>
 
@@ -167,12 +159,17 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {team.map(({ name, role, bio, initials, gradient }) => (
+            {team.map(({ name, role, bio, initials, gradient, photo }) => (
               <div key={name} className="bg-slate-900 border border-slate-800 rounded-2xl p-7 text-center">
-                {/* Avatar placeholder */}
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-5`}>
-                  <span className="text-white font-bold text-xl">{initials}</span>
-                </div>
+                {photo ? (
+                  <div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-5 border-2 border-slate-700">
+                    <Image src={photo} alt={name} fill className="object-cover" />
+                  </div>
+                ) : (
+                  <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-5`}>
+                    <span className="text-white font-bold text-xl">{initials}</span>
+                  </div>
+                )}
                 <h3 className="text-white font-bold text-lg mb-1">{name}</h3>
                 <p className="text-cyan-400 text-sm font-medium mb-4">{role}</p>
                 <p className="text-slate-400 text-sm leading-relaxed">{bio}</p>

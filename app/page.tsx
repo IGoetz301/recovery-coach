@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import EmailForm from './components/EmailForm'
 
@@ -160,53 +161,69 @@ export default function HomePage() {
           <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-3xl"/>
         </div>
 
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 rounded-full px-4 py-1.5 text-sm font-medium mb-7 border border-cyan-500/20">
-            <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"/>
-            Now in early access — join 2,400+ athletes
+        <div className="relative max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Text */}
+          <div className="text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 rounded-full px-4 py-1.5 text-sm font-medium mb-7 border border-cyan-500/20">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"/>
+              Now in early access — join 2,400+ athletes
+            </div>
+
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+              Train Smarter.{' '}
+              <br className="hidden sm:block"/>
+              <span className="gradient-text">Recover Better.</span>
+            </h1>
+
+            <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+              RECOVR turns your wearable data, workout logs, and 30-second check-ins into a
+              daily readiness score and AI-powered training recommendation — so you always
+              know exactly how hard to push.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link
+                href="/how-it-works"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-semibold text-base hover:opacity-90 transition-opacity"
+              >
+                See how it works
+                <svg className="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </Link>
+              <Link
+                href="#pricing"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-slate-800 text-white font-semibold text-base border border-slate-700 hover:bg-slate-700 transition-colors"
+              >
+                View pricing
+              </Link>
+            </div>
+
+            <div className="mt-14 flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-12">
+              {[
+                { value: '2,400+', label: 'Active users' },
+                { value: '91%', label: 'Avg readiness accuracy' },
+                { value: '4.8★', label: 'User rating' },
+              ].map(({ value, label }) => (
+                <div key={label} className="text-center">
+                  <div className="text-2xl font-bold text-white">{value}</div>
+                  <div className="text-xs text-slate-500 mt-0.5">{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-            Train Smarter.{' '}
-            <br className="hidden sm:block"/>
-            <span className="gradient-text">Recover Better.</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            RECOVR turns your wearable data, workout logs, and 30-second check-ins into a
-            daily readiness score and AI-powered training recommendation — so you always
-            know exactly how hard to push.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/how-it-works"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-semibold text-base hover:opacity-90 transition-opacity"
-            >
-              See how it works
-              <svg className="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-            <Link
-              href="#pricing"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-slate-800 text-white font-semibold text-base border border-slate-700 hover:bg-slate-700 transition-colors"
-            >
-              View pricing
-            </Link>
-          </div>
-
-          <div className="mt-14 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-            {[
-              { value: '2,400+', label: 'Active users' },
-              { value: '91%', label: 'Avg readiness accuracy' },
-              { value: '4.8★', label: 'User rating' },
-            ].map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <div className="text-2xl font-bold text-white">{value}</div>
-                <div className="text-xs text-slate-500 mt-0.5">{label}</div>
-              </div>
-            ))}
+          {/* Photo */}
+          <div className="relative hidden lg:block h-[580px] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl shadow-black/50">
+            <Image
+              src="/photo2.jpg"
+              alt="RECOVR founder"
+              fill
+              priority
+              className="object-cover"
+              style={{ objectPosition: 'top center' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent"/>
           </div>
         </div>
       </section>

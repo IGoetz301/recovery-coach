@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ReadinessDemo from '../components/ReadinessDemo'
 
@@ -80,19 +81,32 @@ export default function HowItWorksPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 px-4 overflow-hidden">
+      <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/5 rounded-full blur-3xl"/>
         </div>
-        <div className="max-w-3xl mx-auto text-center relative">
-          <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">How it works</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-            From wearable data to{' '}
-            <span className="gradient-text">daily clarity</span>
-          </h1>
-          <p className="text-slate-400 text-lg leading-relaxed">
-            Five steps. Thirty seconds a day. A training partner that actually knows how you feel.
-          </p>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative">
+          <div className="text-center md:text-left">
+            <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-4">How it works</p>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+              From wearable data to{' '}
+              <span className="gradient-text">daily clarity</span>
+            </h1>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              Five steps. Thirty seconds a day. A training partner that actually knows how you feel.
+            </p>
+          </div>
+          <div className="relative h-72 md:h-[380px] rounded-2xl overflow-hidden border border-slate-800 shadow-xl shadow-black/40">
+            <Image
+              src="/photo3.jpg"
+              alt="RECOVR founder"
+              fill
+              priority
+              className="object-cover"
+              style={{ objectPosition: 'right center' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"/>
+          </div>
         </div>
       </section>
 
